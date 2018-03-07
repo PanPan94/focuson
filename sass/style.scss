@@ -1,6 +1,8 @@
  @import 'compass';
 
  @import 'base/normalize';
+ @include normalize;
  @import 'theme/colors';
 
  @import 'module/header';
+ @import 'module/register';

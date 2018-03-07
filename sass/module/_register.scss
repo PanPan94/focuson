@@ -1,0 +1,132 @@
+.register-container {
+    height: 100vh;
+    background-color: #08AEEA;
+    background-image: linear-gradient(19deg, #454DB0 0%, #292B5C 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: "Raleway", sans-serif;
+}
+
+.register-box {
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 70%;
+    display: flex;
+    border-radius: 25px;
+    overflow: hidden;
+    .l-sidebar {
+        background-color: #292B5C;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &-container {
+            height: 70%;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+        .l-sidebar-content {
+            width: 70%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            color: white;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+            &-welcome {
+                margin: 25px auto 0 auto;
+                width: 80%;
+                text-align: center;
+                color: white;
+                h3 {
+                    font-weight: 700;
+                }
+                p {
+                    font-weight: 300;
+                    text-align: center;
+                }
+                .next-btn {
+                    margin: 0 auto;
+                    height: 80px;
+                    width: 80px;
+                    background: url("http://paartheepan94.free.fr/Algo/next.png") no-repeat;
+                    background-size: 70% 70%;
+                    background-position: center;
+                }
+            }
+        }
+    }
+    .r-sidebar {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &-container {
+            width: 90%;
+            height: 90%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            h3 {
+                text-align: center;
+            }
+            .form {
+                margin: 10px auto;
+                &-field {
+                    padding-top: 15px;
+                }
+                &-field-label {
+                    span {
+                        opacity: 0.7;
+                        text-transform: uppercase;
+                    }
+                }
+                &-field-input {
+                    input {
+                        margin-top: 15px;
+                        border: none;
+                        border-radius: 23px;
+                        color: white;
+                        padding: 15px;
+                        width: 90%;
+                        font-size: 15px;
+                        background-color: rgba(#fff, 0.4);
+                    }
+                }
+                .submit {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .submit-btn {
+                    margin: 25px auto;
+                    display: inline-block;
+                    width: 50%;
+                    font-weight: 700;
+                    background-color: #fff;
+                    color: #292B5C;
+                    text-align: center;
+                    text-decoration: none;
+                    padding: 15px;
+                    border-radius: 25px;
+                }
+            }
+        }
+    }
+}
