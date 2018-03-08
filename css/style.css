@@ -525,7 +525,7 @@ template {
   margin: 0 auto;
   height: 80px;
   width: 80px;
-  background: url("http://paartheepan94.free.fr/Algo/next.png") no-repeat;
+  background: url("../img/next.png") no-repeat;
   background-size: 70% 70%;
   background-position: center;
 }
@@ -570,11 +570,11 @@ template {
 }
 .register-box .r-sidebar-container .form .submit {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 .register-box .r-sidebar-container .form .submit-btn {
-  margin: 25px auto;
+  margin: 25px;
   display: inline-block;
   width: 50%;
   font-weight: 700;
@@ -584,4 +584,16 @@ template {
   text-decoration: none;
   padding: 15px;
   border-radius: 25px;
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 18px;
+  margin: 0 auto;
+}
+.alert-danger {
+  background-color: rgba(247, 21, 21, 0.8);
+}
+.alert-success {
+  background-color: rgba(0, 172, 37, 0.8);
 }

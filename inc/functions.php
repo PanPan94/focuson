@@ -11,3 +11,17 @@ function setHeaderName($titleName = "FocusOn") {
 
     echo $buffer;
 }
+
+function str_random($length){
+    $alphabet = "0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPSDFGHJKLMWXCVBN";
+    return substr(str_shuffle(str_repeat($alphabet, $length)), 0, $length);
+}
+
+function displayErrors() {
+    if(isset($_SESSION['flash'])){
+        foreach($_SESSION['flash'] as $type=>$message) {
+            echo '<div class="alert alert-' . $type . '"><p>' . $message . '</p></div>';
+        }
+        unset($_SESSION['flash']);
+    }
+}
