@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * function setHeaderName
+ * @param {string}
+ * This function print the header and set the title name of the page
+ */
 function setHeaderName($titleName = "FocusOn") {
     ob_start();
     include("header.php");
@@ -23,5 +27,16 @@ function displayErrors() {
             echo '<div class="alert alert-' . $type . '"><p>' . $message . '</p></div>';
         }
         unset($_SESSION['flash']);
+    }
+}
+
+function logged_only() {
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    if(!isset($_SESSION['auth'])) {
+        $_SESSION['flash']['danger'] = "Access Denied";
+        header('Location: login.php');
+        exit();
     }
 }

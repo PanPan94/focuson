@@ -3,6 +3,6 @@
  */
 
 $black: #000000;
-$main: #454DB0;
-$dmain: #292B5C;
-$lmain: #08AEEA;
+$main: #44A8DF;
+$dmain: darken($main, 25);
+$lmain: lighten($main, 15);

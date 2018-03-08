@@ -66,7 +66,6 @@ setHeaderName("FocusOn - Login");
                                 <a href="register.php" style="border:none; cursor: pointer;" class="submit-btn" >Register</a>
                                 <a type="submit" style="border:none; cursor: pointer;"class="submit-btn" id="form-submit">Login</a>
                             </div>
-
                         </form>
                     </div>
                 </div>
