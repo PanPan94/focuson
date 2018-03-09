@@ -1,24 +1,24 @@
 <?php
 require_once('inc/functions.php');
-
+session_start();
 if(!empty($_POST) && !empty($_POST['username'] && !empty($_POST['password']))) {
-    require_once 'inc/db.php';
-    require_once 'inc/functions.php';
+    require_once('inc/db.php');
     $req = $pdo->prepare('SELECT * FROM users WHERE (username = :username OR email = :username)');
     $req->execute(['username' => $_POST['username']]);
     $user = $req->fetch();
-    session_start();
-    if(password_verify($_POST['password'], $user->password)){
-        $_SESSION['auth'] = $user;
-        $_SESSION['flash']['success'] = "You are now connected";
-        header("Location: account.php");
-        exit();
-    }else {
+    if(isset($user->password)) {
+        if(password_verify($_POST['password'], $user->password)){
+            $_SESSION['auth'] = $user;
+            $_SESSION['flash']['success'] = "You are now connected";
+            header("Location: account.php");
+            exit();
+        }
+    }
+    else {
         $_SESSION['flash']['danger'] = 'Incorrect username or password';
     }
 }
 setHeaderName("FocusOn - Login");
-
 ?>
     <div class="register-container">
         <div class="register-box">
@@ -40,7 +40,7 @@ setHeaderName("FocusOn - Login");
             </div>
             <div class="r-sidebar">
                 <div class="r-sidebar-container">
-                    <h3>Create Account</h3>
+                    <h3>Login</h3>
                     <?php
                         displayErrors();
                     ?>

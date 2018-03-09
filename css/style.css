@@ -593,10 +593,11 @@ template {
 
 .news-container {
   display: flex;
-  justify-content: flex-start;
-  align-items: space-around;
+  justify-content: center;
+  margin: 0 auto;
   flex-wrap: wrap;
   width: 90%;
+  overflow-x: scroll;
 }
 .news-container .news-items {
   width: 250px;

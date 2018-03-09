@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700" rel="stylesheet">
 
     <?php if(isset($_SESSION['auth'])) : ?>
-    <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/app.js"></script>
     <?php endif; ?>
     <title>Document</title>
