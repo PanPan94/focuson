@@ -2,14 +2,13 @@
 	background-image: linear-gradient(19deg, $main 0%, $dmain 100%);
 	font-family: Arial, sans-serif;
 }
-
 .news-container {
 	display: flex;
     justify-content: center;
     margin: 0 auto;
 	flex-wrap: wrap;
-    width: 90%;
-    overflow-x: scroll;
+	width: 90%;
+	min-height: 100vh;
 	.news-items {
 		width: 250px;
 		padding: 25px;

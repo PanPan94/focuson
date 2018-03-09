@@ -25,10 +25,23 @@ if(!empty($_POST)) {
     <input type="text" name="api_url" id=""><br>
 
     <label for="api_type">api_type</label><br>
-    <input type="text" name="api_type" id=""><br>
+    <select name="api_type" id="">
+        <option value="json">JSON</option>
+        <option value="xml">XML</option>
+    </select>
+    <br>
 
     <label for="api_category">api_category</label><br>
-    <input type="text" name="api_category" id=""><br>
+    <select name="api_category" id="">
+        <option value="sport">Sport</option>
+        <option value="nature">Nature</option>
+        <option value="technology">Technology</option>
+        <option value="political">Political</option>
+        <option value="business">Business</option>
+        <option value="science">Science</option>
+        <option value="entertainment">Entairtainment</option>
+    </select>
+    <br>
 
     <input type="submit" value="insert">
 </form>

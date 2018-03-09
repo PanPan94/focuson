@@ -1,6 +1,11 @@
 <?php
-require_once('inc/functions.php');
-session_start();
+require_once('inc/functions.php'); // including functions
+session_start(); // starting a session to access all session variables
+if(isset($_SESSION['auth'])) {
+    $_SESSION['flash']['success'] = "You are connected";
+    header('Location: account.php');
+    exit();
+}
 if(!empty($_POST) && !empty($_POST['username'] && !empty($_POST['password']))) {
     require_once('inc/db.php');
     $req = $pdo->prepare('SELECT * FROM users WHERE (username = :username OR email = :username)');

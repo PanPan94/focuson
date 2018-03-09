@@ -1,8 +1,8 @@
 <?php
 require_once('inc/db.php');
 require_once('inc/functions.php');
-setHeaderName('Fav something');
 logged_only();
+setHeaderName('Fav something');
 
 if(!empty($_POST) && isset($_SESSION['auth'])) {
     $user_id = $_SESSION['auth']->id;
@@ -39,13 +39,36 @@ $req = $pdo->query('SELECT * FROM apis');
 
 ?>
 <form action="" method="post">
-    <select name="api_id">
-    <?php 
-        while($ligne = $req->fetch()) {
-            echo '<option value="' . $ligne->api_id . '">' . $ligne->api_name . '</option>';
+<select class="linked-select" data-target="#api_name" data-source="list.php?type=api_name&filter=$id" id="api_type">
+    <option value="0">Select feeds type</option>
+
+    <?php
+        $categories = $pdo->query('SELECT DISTINCT api_category FROM apis');
+
+        foreach($categories as $category) {
+            ?>
+            <option value="<?= $category->api_category ?>"><?= $category->api_category ?></option>
+            <?php
         }
     ?>
-    </select>
+</select>
+<select name="api_id" id="api_name">
+    <option value="0">Select feeds name</option>
+</select>
+
+
+
+
+<!-- DONT TOUCH  -->
+    <!-- <select name="api_id">
+        <?php 
+        /*
+            while($ligne = $req->fetch()) {
+                echo '<option value="' . $ligne->api_id . '">' . $ligne->api_name . '</option>';
+            }
+            */
+        ?>
+    </select> -->
     <button type="submit">Add</button>
 </form>
 

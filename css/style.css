@@ -597,7 +597,7 @@ template {
   margin: 0 auto;
   flex-wrap: wrap;
   width: 90%;
-  overflow-x: scroll;
+  min-height: 100vh;
 }
 .news-container .news-items {
   width: 250px;

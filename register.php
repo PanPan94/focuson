@@ -1,5 +1,4 @@
 <?php
-require_once('inc/functions.php');
 session_start();
 require_once('inc/functions.php');
 if(!empty($_POST)) {
