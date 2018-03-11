@@ -449,6 +449,14 @@ template {
   display: none;
 }
 
+.delete-cross {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  display: block;
+  float: right;
+}
+
 /**
  * Colors Theme
  */

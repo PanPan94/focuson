@@ -1,9 +1,9 @@
 
-function displayJsonNews(apiURL, apiName) {
+function displayJsonNews(apiURL, apiName, api_id) {
     $.getJSON(apiURL, function(data) {
         let articles = data.articles
         console.log(articles)
-        $('#news-container').append('<div class="news-items" data-api="' + apiURL  + '"><h2>' + apiName + '<h2></div>')
+        $('#news-container').append('<div class="news-items" data-api="' + apiURL  + '">' + '<a class="delete-cross" href="account.php?delete=' + api_id + '"></a>' + '<h2>' + apiName + '<h2></div>')
         $i = 0
         $.each(articles, function(index, e) {
             if($i < 10) {

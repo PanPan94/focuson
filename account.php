@@ -7,6 +7,14 @@ setHeaderName(); // Including the header of a simple html page no need to redefi
 ?>
 
 <?php
+if(isset($_GET['delete']) && isset($_SESSION['auth'])) {
+    $del = $pdo->prepare('DELETE FROM favorites WHERE fav_user_id = ? AND fav_api_id = ?');
+    $del->execute([$_SESSION['auth']->id, $_GET['delete']]);
+    $_SESSION['user_favs'] = array();
+    $_SESSION['flash']['success'] = "You've just deleted a feed";
+    header('Location: account.php');
+    exit();
+}
 
 $req = $pdo->prepare('SELECT * FROM favorites WHERE fav_user_id = ?');
 $req->execute([
@@ -17,6 +25,7 @@ while($ligne = $req->fetch()) {
     $_SESSION['user_favs'][$i] = $ligne->fav_api_id;
     $i++;
 }
+
 ?>
 <ul>
     <li><a href="http://punkte.fr/">Home</a></li><!-- This will be changed to the public section link -->
@@ -35,15 +44,13 @@ while($ligne = $req->fetch()) {
  * I'm getting users favorites to display them by columns thanks to the displayJsonNews method (js/app.js)
  */
 <?php if(isset($_SESSION['user_favs'])): ?>
-        <?php
-            for($i = 0; $i < count($_SESSION['user_favs']); $i++) :
-        ?>
+    <?php for($i = 0; $i < count($_SESSION['user_favs']); $i++) : ?>
         <?php
             $req = $pdo->prepare('SELECT * FROM apis WHERE api_id = ?');
             $req->execute([$_SESSION['user_favs'][$i]]);
         ?>
         <?php while($ligne = $req->fetch()) : ?>
-            <?= 'displayJsonNews("' . $ligne->api_url . '","' . $ligne->api_name . '");' ?>
+            <?= 'displayJsonNews("' . $ligne->api_url . '","' . $ligne->api_name . '","' . $ligne->api_id . '");' ?>
         <?php endwhile; ?>
     <?php endfor; ?>
 <?php endif; ?>
