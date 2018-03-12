@@ -1,7 +1,28 @@
 .delete-cross {
-    width: 10px;
-    height: 10px;
-    background-color: red;
+    width: 20px;
+    height: 20px;
+    background: url('../img/cross.png');
+    background-size: 100% 100%;
+    opacity: 0.5;
     display: block;
     float: right;
+    position: relative;
+    right: -8px;
+    top: 20px;
+
+    &:hover { opacity: 0.8; }
+}
+
+.newsId {
+    display: block;
+    float: right;
+    background: url('../img/fav.png') no-repeat;
+    background-size: 100% 100%;
+    width: 16px;height: 16px;
+    opacity: 0.8;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+    }
 }

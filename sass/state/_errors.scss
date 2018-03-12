@@ -9,3 +9,14 @@
         background-color: rgba(0, 172, 37, 0.8);
     }
 }
+
+.errors-displaying {
+    margin-top: 7px;
+    margin-right: 5px;
+    float: right;
+
+    .alert {
+        padding: 15px 35px;
+        color: white;
+    }
+}

@@ -26,15 +26,13 @@ while($ligne = $req->fetch()) {
     $i++;
 }
 
+require_once('inc/menu.php');
 ?>
-<ul>
-    <li><a href="http://punkte.fr/">Home</a></li><!-- This will be changed to the public section link -->
-    <li><a href="favorite.php">Add afeed</a></li>
-    <li><a href="insert.php">Insert a feed into database (for development)</a></li>
-    <li><a href="logout.php">logout</a></li>
-</ul>
+
 <div class="main-feed-container">
-    <?php displayErrors(); // display errors in an alert div ?>
+    <div class="errors-displaying">
+        <?php displayErrors(); // display errors in an alert div ?>
+    </div>
     <div class="news-container" id="news-container">
     </div>
 </div>
@@ -50,7 +48,7 @@ while($ligne = $req->fetch()) {
             $req->execute([$_SESSION['user_favs'][$i]]);
         ?>
         <?php while($ligne = $req->fetch()) : ?>
-            <?= 'displayJsonNews("' . $ligne->api_url . '","' . $ligne->api_name . '","' . $ligne->api_id . '");' ?>
+        <?= "\t" . 'displayJsonNews("' . $ligne->api_url . '","' . $ligne->api_name . '","' . $ligne->api_id . '");' . "\n" ?>
         <?php endwhile; ?>
     <?php endfor; ?>
 <?php endif; ?>

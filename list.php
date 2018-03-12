@@ -23,9 +23,3 @@ echo json_encode(array_map(function($item) {
         'api_type' => $item->api_url
     ];
 }, $items));
-
-// array_map(function($item){
-//     return [
-//         'label' => $item['']
-//     ]
-// }, items);

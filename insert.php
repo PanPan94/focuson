@@ -1,6 +1,7 @@
 <?php
 require_once('inc/db.php');
 require_once('inc/functions.php');
+logged_only();
 setHeaderName('Insert Apis in database');
 
 if(!empty($_POST)) {

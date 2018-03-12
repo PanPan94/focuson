@@ -1,15 +1,21 @@
 
+let newsId = 0;
 function displayJsonNews(apiURL, apiName, api_id) {
     $.getJSON(apiURL, function(data) {
         let articles = data.articles
         console.log(articles)
-        $('#news-container').append('<div class="news-items" data-api="' + apiURL  + '">' + '<a class="delete-cross" href="account.php?delete=' + api_id + '"></a>' + '<h2>' + apiName + '<h2></div>')
+        $('#news-container').append('<div class="news-items" data-api="' + apiURL  + '">' + '<a class="delete-cross" href="account.php?delete=' + api_id + '"></a>' + '<h2 data-apiID="' + api_id +  '">' + apiName + '</h2></div>')
         $i = 0
         $.each(articles, function(index, e) {
             if($i < 10) {
-                $('*[data-api="' + apiURL + '"]').append('<div class="news-boxes" >' + '<h4>' + e.title  + '</h4>' + '<img style="width: 100%" src="' + e.urlToImage  + '" />' + '<p>' + e.description  + '</p>' + '<a href="' + e.url  + '">See more...</a></div>')
+                $('*[data-api="' + apiURL + '"]').append('<div class="news-boxes" >' + '<h4>' 
+                + e.title  + '</h4>' + '<img style="width: 100%" src="' + e.urlToImage  + '" />' 
+                + '<p>' + e.description  + '</p>' + '<a href="' + e.url  
+                + '" style="text-decoration: none;">See more...</a><a class="newsId" data-new="getNews' 
+                + newsId + '" ></a></div>')
                 $i++
             }
+            newsId++
         });
     });
     
@@ -50,4 +56,30 @@ function selects() {
     $selects.forEach(function($select) {
         new LinkedSelect($select)
     })
+    setTimeout(() => {
+        $news = $('.newsId')
+        $news.each(function($i) {
+            $(this).on("click", function() {
+                $tab = $(this).parent()
+                $element = {
+                    title: $tab[0].childNodes[0].innerText,
+                    img: $tab[0].childNodes[1].currentSrc,
+                    desc: $tab[0].childNodes[2].innerText,
+                    link: $tab[0].childNodes[3].href,
+                    api_id: $tab.parent()[0].childNodes[1].dataset.apiid
+                }
+                
+                $.ajax({
+                    type: "post",
+                    url: "addbookmark.php",
+                    data: "title=" + $element.title + "&img=" +  $element.img + "&desc=" +  $element.desc + "&link=" +  $element.link + "&api_id=" +  $element.api_id,
+                    dataType: 'html',
+                    success: function (code, state) {
+                      alert("The article from " + $tab.parent()[0].childNodes[1].innerText + " has been added to your bookmarks")
+                    }
+                  });
+            })
+        })
+    }, 3000)
 }
+
