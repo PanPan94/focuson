@@ -1,0 +1,126 @@
+
+
+.home {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    width: 100%;
+    @include flex(center, center);
+
+    background: url('../img/fond.jpg') no-repeat;
+    background-size: 100% 100%;
+
+    // @include filter(saturate(50%));
+}
+
+.home-container {
+    @include flex(center, center);
+    @include flex-direction(column);
+    width: 60%;
+
+    .home-logo {
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+    .header-hello {
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: 2em;
+            transition: all 0.3s;
+            opacity: 1;
+            position: relative;
+            display: block;
+            padding: 20px;
+            border-bottom: 2px solid white;
+            border-width: 80%;
+        }
+    }
+
+    .form-language{
+        width: 50%;
+    }
+
+    .language-selector {
+        @include display-flex;
+        @include flex(space-around, center);
+        @include flex-direction(row);
+        margin: 25px auto;
+        width: 100%;
+
+        .language-input {
+            opacity: 0;
+            display: block;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .language {
+            width: 110px;
+            height: 40px;
+            transition: all 0.3s ease;
+            &:hover {
+                transform: scale(1.25);
+                cursor: pointer;
+            }
+        }
+
+        
+        .french {
+            background: url('../img/france.svg') no-repeat center;
+            background-size: cover;
+        }
+        .english {
+            background: url('../img/uk.svg') no-repeat center;
+            background-size: 100% 294%;
+        }
+        .bulgaria {
+            background: url('../img/bulgaria.svg') no-repeat center;
+            background-size: 200% 280%;
+        }
+        .selected {
+            @include transform(scale(1.25));
+            transition: all 0.3s;
+            box-shadow: 0 0px 30px rgba(#fff, 0.7);
+            cursor: pointer;
+        }
+        .unselected {
+            @include filter(grayscale(50%));
+        }
+    }
+    .btn {
+        margin: 25px auto;
+        b{
+            color: $white;
+        }
+        &:hover {
+            background-color: $white;
+            b {
+
+                color: $grey;
+            }
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .home-container {
+        width: 100%;
+        .form-language{
+            width: 100%;
+        }
+        .header-hello {
+            h2 {
+                font-size: 1.5em;
+            }
+        }    
+        .language-selector {
+            width: 100%;
+        }
+    }
+}

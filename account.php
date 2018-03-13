@@ -48,7 +48,9 @@ require_once('inc/menu.php');
             $req->execute([$_SESSION['user_favs'][$i]]);
         ?>
         <?php while($ligne = $req->fetch()) : ?>
-        <?= "\t" . 'displayJsonNews("' . $ligne->api_url . '","' . $ligne->api_name . '","' . $ligne->api_id . '");' . "\n" ?>
+            <?php if($ligne->api_type == "json") : ?>
+                <?= "\t" . 'displayJsonNews("' . $ligne->api_url . '","' . $ligne->api_name . '","' . $ligne->api_id . '");' . "\n" ?>
+            <?php endif; ?>
         <?php endwhile; ?>
     <?php endfor; ?>
 <?php endif; ?>

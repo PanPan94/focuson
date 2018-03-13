@@ -1,14 +1,17 @@
  @import 'compass';
+ @import 'theme/colors';
 
  @import 'base/normalize';
+ @import 'base/mixins';
  @include normalize;
 
- @import 'layout/_layout';
+ @import 'layout/layout';
 
  
  @import 'theme/colors';
  
  @import 'module/header';
+ @import 'module/home';
  @import 'module/menu';
  @import 'module/register';
  @import 'module/newsfeeds';

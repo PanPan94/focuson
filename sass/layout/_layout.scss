@@ -1,3 +1,23 @@
+.btn {
+    display: block;
+    @include flex(center, center);
+    width: 180px;
+    height: 50px;
+    text-decoration: none;
+    box-shadow: 0 0px 30px rgba($white, 0.4);
+    @include border-radius(70px);
+    border: 2px solid $white;
+    color: $white;
+    transition: all 0.3s;
+    &:hover {
+        color: $white;
+        background-color: $main;
+        box-shadow: 0 0px 30px rgba($white, 0.7);
+        cursor: pointer;
+        @include transform(translateY(-5px));
+    }
+}
+
 .delete-cross {
     width: 20px;
     height: 20px;
