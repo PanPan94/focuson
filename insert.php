@@ -37,6 +37,7 @@ if(!empty($_POST)) {
         <option value="sport">Sport</option>
         <option value="nature">Nature</option>
         <option value="technology">Technology</option>
+        <option value="general">General</option>
         <option value="political">Political</option>
         <option value="business">Business</option>
         <option value="science">Science</option>

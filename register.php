@@ -1,6 +1,13 @@
 <?php
 session_start();
 require_once('inc/functions.php');
+setLanguage();
+requireLanguage();
+if(isset($_SESSION['auth'])) {
+    $_SESSION['flash']['success'] = "You are connected";
+    header('Location: account.php');
+    exit();
+}
 if(!empty($_POST)) {
     $errors = array();
     // Informations to connect to the database
@@ -8,31 +15,31 @@ if(!empty($_POST)) {
 
     // Username validation
     if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9]+$/', $_POST['username'])) {
-        $errors['username'] = "Invalid username";
+        $errors['username'] = _IVDU;
     }else {
         $req = $pdo->prepare('SELECT id FROM users WHERE username = ?');
         $req->execute([$_POST['username']]);
         $user = $req->fetch();
         if($user){
-            $errors['username'] = 'This username already exists';
+            $errors['username'] = _ALRDEXSTU ;
         }
     }
 
     // Mail validation
     if(empty($_POST['mail']) || !filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
-        $errors['mail'] = "Invalid mail entered";
+        $errors['mail'] = _IVDM ;
     }else {
         $req = $pdo->prepare('SELECT id FROM users WHERE email = ?');
         $req->execute([$_POST['mail']]);
         $user = $req->fetch();
         if($user){
-            $errors['mail'] = 'This email already exists';
+            $errors['mail'] = _ALRDEXSTM ;
         }
     }
 
     // Password confirmation
     if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']){
-        $errors['password'] = "Invalid password";
+        $errors['password'] = _IVDP;
     }
 
     // Registering in database if $errors is empty
@@ -44,7 +51,7 @@ if(!empty($_POST)) {
         $user_id = $pdo->lastInsertId();
         $message = "Hi there !\nYou've just created an account in FocusOn !\nEnjoy";
         mail($_POST['mail'], "FocusOn account confirmation ", $message);
-        $_SESSION['flash']['success'] = "A confirmation mail has been sent to your inbox.";
+        $_SESSION['flash']['success'] = _RGT_S ;
         header('Location: login.php');
         exit();
     }
@@ -63,9 +70,9 @@ setHeaderName("FocusOn - Register");
                             <img src="img/default_profile.png" alt="default_profile">
                         </div>
                         <div class="avatar-welcome">
-                            <h3>Let's get your set up !</h3>
+                            <h3><?= _START2 ?></h3>
                             <p>
-                                It should only take a couple of minutes to get started
+                                <?= _RGT_DESC ?>
                             </p>
                             <div class="next-btn"></div>
                         </div>
@@ -74,7 +81,7 @@ setHeaderName("FocusOn - Register");
             </div>
             <div class="r-sidebar">
                 <div class="r-sidebar-container">
-                    <h3>Create Account</h3>
+                    <h3><?= _REGISTER ?></h3>
                     <?php if(!empty($errors)): ?>
                         <div class="alert alert-danger">
                             <ul>
@@ -90,7 +97,7 @@ setHeaderName("FocusOn - Register");
                         <form action="" method="POST" id="form">
                             <div class="form-field">
                                 <div class="form-field-label">
-                                    <span>Username</span>
+                                    <span><?= _USERNAME ?></span>
                                 </div>
                                 <div class="form-field-input">
                                     <input name="username" type="text">
@@ -98,7 +105,7 @@ setHeaderName("FocusOn - Register");
                             </div>
                             <div class="form-field">
                                 <div class="form-field-label">
-                                    <span>Email</span>
+                                    <span><?= _EMAIL ?></span>
                                 </div>
                                 <div class="form-field-input">
                                     <input name="mail" type="text">
@@ -106,7 +113,7 @@ setHeaderName("FocusOn - Register");
                             </div>
                             <div class="form-field">
                                 <div class="form-field-label">
-                                    <span>Password</span>
+                                    <span><?= _PASSWORD ?></span>
                                 </div>
                                 <div class="form-field-input">
                                     <input name="password" type="password">
@@ -114,15 +121,15 @@ setHeaderName("FocusOn - Register");
                             </div>
                             <div class="form-field">
                                 <div class="form-field-label">
-                                    <span>Password Confirm</span>
+                                    <span><?= _PASSWORDC ?></span>
                                 </div>
                                 <div class="form-field-input">
                                     <input name="password_confirm" type="password">
                                 </div>
                             </div>
                             <div class="submit">
-                                <a href="login.php" style="border:none; cursor: pointer;" class="submit-btn" >Login</a>
-                                <a type="submit" style="border:none; cursor: pointer;"class="submit-btn" id="form-submit">Register</a>
+                                <a href="login.php" style="border:none; cursor: pointer;" class="submit-btn" ><?= _LOGIN ?></a>
+                                <a type="submit" style="border:none; cursor: pointer;"class="submit-btn" id="form-submit"><?= _REGISTER ?></a>
                             </div>
 
                         </form>

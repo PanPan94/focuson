@@ -1,19 +1,19 @@
 <?php
     session_start();
+    require_once('inc/functions.php');
     if(isset($_GET['unset'])) {
         unset($_SESSION['lang']);
         header('Location: language.php');
         exit();
     }
-    if(isset($_POST['language']) || isset($_SESSION['lang'])) {
+    if(isset($_POST['language'])) {
         $_SESSION['lang'] = $_POST['language'];
-        header('Location: account.php');
+        header('Location: login.php');
         exit();
     }
-    require_once('inc/functions.php');
     setHeaderName('Choose your language');
+    
 ?>
-
 <div class="home">
     <div class="home-container">
         <div class="home-logo">
@@ -32,7 +32,7 @@
                         <input class="language-input" type="radio" name="language" value="en" checked>
                     </a>
                     <a id="bulgaria" class="btn language bulgaria selected" data-hello="Изберете вашия език">
-                        <input class="language-input" type="radio" name="language" value="bul" checked>
+                        <input class="language-input" type="radio" name="language" value="bul" >
                     </a>
             </div>
             <a class="btn" id="discover" href="#"><b>Discover</b></a>

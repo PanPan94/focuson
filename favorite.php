@@ -2,7 +2,7 @@
 require_once('inc/db.php');
 require_once('inc/functions.php');
 logged_only();
-setHeaderName('Fav something');
+requireLanguage();
 
 if(!empty($_POST) && isset($_SESSION['auth'])) {
     $user_id = $_SESSION['auth']->id;
@@ -23,54 +23,54 @@ if(!empty($_POST) && isset($_SESSION['auth'])) {
     if($count < 6 && !$fav_exists) {
         $req = $pdo->prepare('INSERT INTO favorites SET fav_user_id = ?, fav_api_id = ?');
         $req->execute([$user_id, $api_id]);
-        $_SESSION['flash']['success'] = "You've just added a news feed in your profile page.";
+        $_SESSION['flash']['success'] = _SCCS_ADD;
         header('Location: account.php');
     }
     
     if($fav_exists) {
-        $_SESSION['flash']['danger'] = "Already added";
+        $_SESSION['flash']['danger'] = _ALR_ADD;
         header('Location: account.php');
         exit();
     }
     $req->closeCursor();
 }
 
+setHeaderName('Fav something');
 $req = $pdo->query('SELECT * FROM apis');
-
+require_once('inc/menu.php');
 ?>
+<div class="errors-displaying">
+        <?php displayErrors(); // display errors in an alert div ?>
+    </div>
+<div class="favorite">
+    <div class="container">
 <form action="" method="post">
-<select class="linked-select" data-target="#api_name" data-source="list.php?type=api_name&filter=$id" id="api_type">
-    <option value="0">Select feeds type</option>
+<p>I'm searching for a </p>
+    <select class="linked-select" data-target="#api_name" data-source="list.php?type=api_name&filter=$id" id="api_type">
+        <option value="0">Select feeds type</option>
+        <?php
+            $categories = $pdo->query('SELECT DISTINCT api_category FROM apis');
 
-    <?php
-        $categories = $pdo->query('SELECT DISTINCT api_category FROM apis');
-
-        foreach($categories as $category) {
-            ?>
-            <option value="<?= $category->api_category ?>"><?= $category->api_category ?></option>
-            <?php
-        }
-    ?>
-</select>
-<select name="api_id" id="api_name">
-    <option value="0">Select feeds name</option>
-</select>
-
-
-
-
-<!-- DONT TOUCH  -->
-    <!-- <select name="api_id">
-        <?php 
-        /*
-            while($ligne = $req->fetch()) {
-                echo '<option value="' . $ligne->api_id . '">' . $ligne->api_name . '</option>';
+            foreach($categories as $category) {
+                ?>
+                <option value="<?= $category->api_category ?>"><?= $category->api_category ?></option>
+                <?php
             }
-            */
         ?>
-    </select> -->
+    </select>
+    <p>feed from the </p>
+    <select name="api_id" id="api_name">
+        <option value="0">Select feeds name</option>
+    </select>
+    <p> journal.<br></p>
     <button type="submit">Add</button>
 </form>
+</div>
+</div>
+
+
+
+
 
 <?php
     $req->closeCursor();

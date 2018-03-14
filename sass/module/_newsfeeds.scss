@@ -5,11 +5,12 @@
 }
 .news-container {
 	display: flex;
-    justify-content: center;
+	justify-content: center;
+	align-items: flex-start;
     margin: 0 auto;
 	flex-wrap: wrap;
 	margin-top: 30px;
-	width: 90%;
+	// width: 90%;
 	min-height: 100vh;
 	.news-items {
 		width: 250px;

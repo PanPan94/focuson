@@ -12,7 +12,6 @@ function setHeaderName($titleName = "FocusOn") {
 
     $title = $titleName;
     $buffer = preg_replace('/(<title>)(.*?)(<\/title>)/i', '$1' . $title . '$3', $buffer);
-
     echo $buffer;
 }
 
@@ -38,5 +37,22 @@ function logged_only() {
         $_SESSION['flash']['danger'] = "Access Denied";
         header('Location: login.php');
         exit();
+    }
+}
+
+function setLanguage() {
+    if(!isset($_SESSION['lang'])) {
+        header('Location: language.php');
+        exit();
+    }
+}
+
+function requireLanguage() {
+    if($_SESSION['lang'] == "fr") {
+        include('lang/fr_FR.php');
+    }elseif($_SESSION['lang'] == "en") {
+        include('lang/en_US.php');
+    }elseif($_SESSION['lang'] == "bul") {
+        include('lang/bul_BUL.php');
     }
 }

@@ -2,6 +2,8 @@
 session_start(); // start a session
 require('inc/functions.php'); // including functions
 require('inc/db.php'); // including the database connexion file 
+setLanguage(); // Redirects the user if he has no language selected
+requireLanguage();
 logged_only(); // the user is disconnected if he is not connected
 setHeaderName(); // Including the header of a simple html page no need to redefine it (inc/functions.php)
 ?>
